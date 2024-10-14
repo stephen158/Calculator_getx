@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:get/get.dart';
 
 class CalculatorController extends GetxController {
@@ -26,7 +28,14 @@ class CalculatorController extends GetxController {
   }
 
   void calculate() {
-    _secondOperand = double.tryParse(displayText.value) ?? 0;
+    String display = displayText.value;
+    if (_operation.isNotEmpty) {
+      final parts = display.split(RegExp(r'[+\-*/]'));
+      if (parts.length > 1) {
+        _secondOperand = double.parse(parts[1]);
+      }
+    }
+
     double result;
 
     switch (_operation) {
@@ -54,7 +63,7 @@ class CalculatorController extends GetxController {
   void _setOperation(String operation) {
     _firstOperand = double.tryParse(displayText.value) ?? 0;
     _operation = operation;
-    displayText.value = '0';
+    displayText.value += _operation;
   }
 
   void _appendNumber(String number) {
