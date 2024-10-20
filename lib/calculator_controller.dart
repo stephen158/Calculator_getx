@@ -7,6 +7,7 @@ class CalculatorController extends GetxController {
   String _operation = '';
   double _firstOperand = 0;
   double _secondOperand = 0;
+  String temp='';
 
   void onButtonClick(String value) {
     if (value == 'C') {
@@ -54,7 +55,7 @@ class CalculatorController extends GetxController {
       default:
         result = 0;
     }
-
+    temp = result.toString();
     displayText.value = result.toString();
     _operation = '';
     _firstOperand = result;
@@ -67,7 +68,7 @@ class CalculatorController extends GetxController {
   }
 
   void _appendNumber(String number) {
-    if (displayText.value == '0' && number != '.') {
+    if (displayText.value == '0' && number != '.' || displayText.value == temp ) {
       displayText.value = number;
     } else {
       displayText.value += number;

@@ -23,7 +23,7 @@ class CalculatorScreen extends StatelessWidget {
 
   CalculatorScreen({Key? key}) : super(key: key);
 
-  Widget _buildButton(String text, {Color? color}) {
+  Widget _values(String text, {Color? color}) {
     return Expanded(
       child: GestureDetector(
         onTap: () {
@@ -49,68 +49,70 @@ class CalculatorScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: const Text('Calculator'),
-        backgroundColor: Colors.blueAccent,
-      ),
-      body: Column(
-        children: [
-          Expanded(
-            child: Container(
-              padding: const EdgeInsets.all(16),
-              alignment: Alignment.bottomRight,
-              child: Obx(
-                    () => Text(
-                  calculatorController.displayText.value,
-                  style: const TextStyle(fontSize: 48, fontWeight: FontWeight.bold),
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        appBar: AppBar(
+          title: const Text('Calculator'),
+          backgroundColor: Colors.blueAccent,
+        ),
+        body: Column(
+          children: [
+            Expanded(
+              child: Container(
+                padding: const EdgeInsets.all(16),
+                alignment: Alignment.bottomRight,
+                child: Obx(
+                      () => Text(
+                    calculatorController.displayText.value,
+                    style: const TextStyle(fontSize: 48, fontWeight: FontWeight.bold),
+                  ),
                 ),
               ),
             ),
-          ),
-          Column(
-            children: [
-              Row(
-                children: [
-                  _buildButton('7'),
-                  _buildButton('8'),
-                  _buildButton('9'),
-                  _buildButton('/', color: Colors.orange),
-                ],
-              ),
-              Row(
-                children: [
-                  _buildButton('4'),
-                  _buildButton('5'),
-                  _buildButton('6'),
-                  _buildButton('*', color: Colors.orange),
-                ],
-              ),
-              Row(
-                children: [
-                  _buildButton('1'),
-                  _buildButton('2'),
-                  _buildButton('3'),
-                  _buildButton('-', color: Colors.orange),
-                ],
-              ),
-              Row(
-                children: [
-                  _buildButton('0'),
-                  _buildButton('.'),
-                  _buildButton('='),
-                  _buildButton('+', color: Colors.orange),
-                ],
-              ),
-              Row(
-                children: [
-                  _buildButton('C', color: Colors.redAccent),
-                ],
-              ),
-            ],
-          ),
-        ],
+            Column(
+              children: [
+                Row(
+                  children: [
+                    _values('7'),
+                    _values('8'),
+                    _values('9'),
+                    _values('/', color: Colors.orange),
+                  ],
+                ),
+                Row(
+                  children: [
+                    _values('4'),
+                    _values('5'),
+                    _values('6'),
+                    _values('*', color: Colors.orange),
+                  ],
+                ),
+                Row(
+                  children: [
+                    _values('1'),
+                    _values('2'),
+                    _values('3'),
+                    _values('-', color: Colors.orange),
+                  ],
+                ),
+                Row(
+                  children: [
+                    _values('0'),
+                    _values('.'),
+                    _values('='),
+                    _values('+', color: Colors.orange),
+                  ],
+                ),
+                Row(
+                  children: [
+                    _values('C', color: Colors.redAccent),
+                  ],
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
